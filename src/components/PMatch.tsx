@@ -8,22 +8,22 @@ const theme = createTheme({
 })
 //Functionality
 export default function PMatch() {
-    let str = ''
-    let inputStr: any
+    let iPin = ''
+    let combination: any
     const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        inputStr = event
+        combination = event
     }
     const onCLickHandler = (event: React.MouseEvent) => {
-        str += event.currentTarget.textContent;
+        iPin += event.currentTarget.textContent;
     }
     const onCheckButtonClick = () => {
-        if (str === inputStr.target.value) {
+        if (iPin === combination.target.value) {
             alert("Nice One! You've successfully unlocked the vault.")
-            inputStr.target.value = ''
+            combination.target.value = ''
         }
         else
-            alert(`Try Again! Passkey is ${inputStr.target.value}. Combo inputted is ${str}.`)
-        str = ''
+            alert(`Try Again! Passkey is ${combination.target.value}. Combo inputted is ${iPin}.`)
+        iPin = ''
     }
     return (
         <div>
