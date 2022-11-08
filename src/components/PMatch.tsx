@@ -18,7 +18,7 @@ export default function PMatch() {
     }
     const onCheckButtonClick = () => {
         if (iPin === combination.target.value) {
-            alert("Nice One! You've successfully unlocked the vault.")
+            alert("Congratulations! Successfully Unlocked!")
             combination.target.value = ''
         }
         else

@@ -1,10 +1,6 @@
 import './App.css';
-import { Button } from '@mui/material';
 import PMatch from './components/PMatch';
 
-const clickHandlerTwo = () =>{
-  alert("Enter PIN")
-}
 
 function App() {
   return (
