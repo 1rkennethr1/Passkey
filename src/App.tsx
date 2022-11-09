@@ -1,13 +1,13 @@
 import './App.css';
-import PMatch from './components/PMatch';
+import Bingo from './components/Bingo';
 
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <h2>Enter PIN to Validate!</h2>
-      <PMatch></PMatch>
+      <h2>Play Bingo!</h2>
+      <Bingo></Bingo>
       </header>
     </div>
   );
