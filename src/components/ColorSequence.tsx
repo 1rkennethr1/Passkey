@@ -1,7 +1,5 @@
 import { Box, Button } from "@mui/material";
 import { useState, useRef } from "react";
-import { isTemplateLiteralTypeNode } from "typescript";
-
 
 export default function ColorSequence() {
 
@@ -91,6 +89,7 @@ export default function ColorSequence() {
                     <Button onClick={buttonClickHandler} variant="contained" size="large" id={e} key={e} sx={{
                         width: "10rem",
                         height: "5rem",
+                        background: "#4d948b"
                     }}></Button>
                 ))}
                 <br />
