@@ -2,37 +2,64 @@ import { Box, Button } from "@mui/material";
 import { useState, useRef } from "react";
 import { isTemplateLiteralTypeNode } from "typescript";
 
-//Functionality
+
 export default function ColorSequence() {
-    const [btnBgColor, setBtnBgColor] = useState("")
 
+//Functionality
+    //useState
+    const [btnBgColor, setBtnBgColor] = useState<Array<String>>([])
+
+    //Checker
     const buttonClickHandler = (e: React.MouseEvent<HTMLButtonElement>): void => {
-        e.currentTarget.style.backgroundColor = btnBgColor
-        // console.log(e.currentTarget.style.backgroundColor = btnBgColor)
-    }
+        let array = btnBgColor
 
-    const colorClickHandler = (e: React.MouseEvent) => {
-        setBtnBgColor(e.currentTarget.id)
-    }
+        if (ref.current[btnBgColor.length] === e.currentTarget.id) {
+            e.currentTarget.style.background = e.currentTarget.id
+            e.currentTarget.classList.add('hover')
+            array.push(e.currentTarget.id)
+            setBtnBgColor(array)
 
+            if (ref.current.length === btnBgColor.length) {
+                alert("Good job!")
+                window.location.reload();
+            }
+        }
+        else {
+            document.querySelectorAll('button').forEach(e => {
+                e.removeAttribute('style')
+            })
+            setBtnBgColor([])
+        }
+        console.log(array)
+        console.log(ref.current)
+        console.log(btnBgColor)
+    }
+    //Colors Available
     const colors = [
-        "#8d29aa", 
-        "#de3bd6", 
-        "#d52650", 
-        "#ead125", 
-        "#e3803b", 
-        "#4965ca", 
-        "#49c5e1", 
-        "#b4dd4b", 
+        "#8d29aa",
+        "#de3bd6",
+        "#d52650",
+        "#ead125",
+        "#e3803b",
+        "#4965ca",
+        "#49c5e1",
+        "#b4dd4b",
         "#44aa50"
     ];
-    
+    //For the Boxes
     for (let i = colors.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [colors[i], colors[j]] = [colors[j], colors[i]];
     }
-    
+
     const ref = useRef(colors)
+    //For the buttons
+    const colors2 = [...colors]
+    for (let i = colors2.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [colors2[i], colors2[j]] = [colors2[j], colors2[i]];
+    }
+    const ref2 = useRef(colors2)
 
     return (
         <div>
@@ -43,7 +70,7 @@ export default function ColorSequence() {
                     gridTemplateRows: 'repeat(1,1fr)',
                     justifyContent: "center",
                 }}>{ref.current.map((item, i) => (
-                    <Box sx={{
+                    <Box id={item} key={i} sx={{
                         background: item,
                         width: "2.5rem",
                         height: "2.5rem",
@@ -60,8 +87,8 @@ export default function ColorSequence() {
                 gap: '.7rem',
                 gridTemplateColumns: 'repeat(3,0fr)',
             }}>
-                {Array.from(Array(9)).map((_, index) => (
-                    <Button onClick={buttonClickHandler} variant="contained" size="large" sx={{
+                {ref2.current.map(e => (
+                    <Button onClick={buttonClickHandler} variant="contained" size="large" id={e} key={e} sx={{
                         width: "10rem",
                         height: "5rem",
                     }}></Button>
