@@ -1,13 +1,12 @@
 import './App.css';
-import Bingo from './components/Bingo';
+import ColorSequence from './components/ColorSequence';
 
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <h2>Play Bingo!</h2>
-      <Bingo></Bingo>
+      <ColorSequence></ColorSequence>
       </header>
     </div>
   );
