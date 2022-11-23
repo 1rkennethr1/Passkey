@@ -33,7 +33,7 @@ export default function RandomRoll() {
     };
 
     const random = () => {
-        return Math.floor(Math.random() * box.length) % iBoxArray.length;
+        return parseInt(new Date().getTime().toString()) % iBoxArray.length;
     };
     useEffect(() => {
         let newObj = iBoxArray.map((e, i) => (i === index ? 0 : e));
@@ -45,7 +45,7 @@ export default function RandomRoll() {
                     random();
                 }
                 setIndex(random());
-            }, 150);
+            }, 120);
         } else if (!rolling && rolling != null) {
             const ind = newObj.indexOf(0);
 
