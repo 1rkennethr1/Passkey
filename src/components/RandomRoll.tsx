@@ -1,7 +1,6 @@
 import { Box, Button, createTheme, Grid, TextField, ThemeProvider } from "@mui/material";
 import { green } from "@mui/material/colors";
-import { borderColor } from "@mui/system";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 //Material UI Change of Color
 const theme = createTheme({
     palette: {
@@ -9,42 +8,54 @@ const theme = createTheme({
     }
 })
 //Functionality
-export default function PMatch() {
-    const BNumbers = [
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9"
-    ]
-    function randomer (){
-        for (let a = BNumbers, i = a.length; i--; ) {
-            const random = a.splice(Math.floor(Math.random() * (i + 1)), 1)[0];
-            return random
-        }
-    }
-    const [rolling, setRolling] = useState<boolean>(false);
+export default function RandomRoll() {
+    const iBox: number[] = Array.from(Array(9).keys());
+    const iBoxArray = [...iBox].map((e) => e + 1);
+    const [box, setBoxes] = useState<number[]>(iBoxArray);
+
+    const [roll, setRoll] = useState<number[]>(box.map(() => 0));
+    const [rolling, setRolling] = useState<boolean | null>(null);
+
+    const [index, setIndex] = useState<number>(
+		Math.floor(Math.random() * iBoxArray.length)
+	);
+
     const rollHandler = () => {
-        setRolling(!rolling);
-    };
+		setRolling(!rolling);
+		if (!rolling) {
+			setIndex((index) => index + 1);
+		} else {
+		}
+	};
 
-    const LNumbers = [
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9"
-    ]
+    const random = () => {
+		return Math.floor(Math.random() * box.length) % iBoxArray.length;
+	};
+    useEffect(() => {
+		if (rolling && rolling != null) {
+			let newObj = iBoxArray.map((e, i) => (i === index ? 0 : e));
+                setBoxes(newObj);
+            setTimeout(() => {
+				setBoxes(iBoxArray);
+				while (index === random()) {
+					random();
+				}
+				setIndex(random());
+			}, 150);
+		} else if (!rolling && rolling != null) {
+			let newObj = iBoxArray.map((e, i) => (i === index ? 0 : e));
+			console.log(newObj);
+			const ind = newObj.findIndex((e) => e === 0);
 
-    const ref = useRef(LNumbers)
+			const newRoll = roll.map((e, i) => {
+				if (i === ind) {
+					return e + 1;
+				} else return e;
+			});
+			setRoll(newRoll);
+			setBoxes(newObj);
+		}
+	}, [index]);
 
     return (   
         <div>
@@ -54,15 +65,15 @@ export default function PMatch() {
                     flexDirection: 'row',
                     gridTemplateRows: 'repeat(1,1fr)',
                     justifyContent: "center",
-                }}>{ref.current.map((item, i) => (
-                    <Box id={item} key={i} padding={1} sx={{
+                }}>{iBox.map((e) => (
+                    <Box padding={1} sx={{
                         width: "2.5rem",
                         height: "2.5rem",
                         border: "1px solid",
                         borderColor: "#000",
                         backgroundColor: "white",
                         
-                    }}>{item}</Box>
+                    }}>{e+1}</Box>
                 ))}
                 </Box>
                 <br/>
@@ -71,15 +82,15 @@ export default function PMatch() {
                     flexDirection: 'row',
                     gridTemplateRows: 'repeat(1,1fr)',
                     justifyContent: "center",
-                }}>{ref.current.map((item, i) => (
-                    <Box id={item} key={i} padding={1} sx={{
+                }}>{roll.map((e) => (
+                    <Box padding={1} sx={{
                         width: "2.5rem",
                         height: "2.5rem",
                         border: "1px solid",
                         borderColor: "#000",
                         backgroundColor: "white",
                         
-                    }}>0</Box>
+                    }}>{e}</Box>
                 ))}
                 </Box>
             </div>
@@ -99,16 +110,13 @@ export default function PMatch() {
                         gap: '.7rem',
                         gridTemplateColumns: 'repeat(3,0fr)',
                     }}>
-                {Array.from(Array(9)).map((_, index) => (
+                {box.map((e) => (
                             <Box sx={{
                                 background: "#B3B3B3",
                                 width: 128,
                                 height: 128,
                                 borderRadius: 1,
-                                // border: "1px solid",
-                                // borderColor: "primary.main",
-                                // "& .MuiButton-startIcon": { margin: 0 }
-                            }}>{randomer()}</Box>
+                            }}>{e}</Box>
                         ))}
                     
                 </Grid>
