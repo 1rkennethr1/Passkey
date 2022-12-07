@@ -10,13 +10,13 @@ import RestExample from './components/Notes/RestExample';
 function App() {
   return (
     <div className="App">
-      {/* <header className="App-header"> */}
+      <header className="App-header">
       {/* <TicTacToe></TicTacToe> */}
       {/* <Patuti/> */}
       {/* <RandomRoll/> */}
       {/* <StateContext><StateManagement/></StateContext> */}
-      {/* </header> */}
       <RestExample/>
+      </header>
     </div>
   );
 }
