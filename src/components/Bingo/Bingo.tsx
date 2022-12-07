@@ -4,7 +4,7 @@ import {
     Box
 } from "@mui/material";
 import React from "react";
-import Buttons from "./Buttons";
+import Buttons from "../Buttons";
 
 const Bingo = () =>{
     let str = ''

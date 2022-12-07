@@ -1,6 +1,6 @@
 import { Box, Button } from "@mui/material";
 import { useEffect, useState } from "react";
-import { Task, useStateContext } from "./context/context"
+import { Task, useStateContext } from "../context/context"
 const StateManagement = () => {
 	const { queues, setQueues, setTasks, tasks } = useStateContext();
 	const reg = Array.from(Array(3).keys());

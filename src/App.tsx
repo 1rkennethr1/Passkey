@@ -1,11 +1,12 @@
 import './App.css';
-import ColorSequence from './components/ColorSequence';
-import TicTacToe from './components/TicTacToe';
-import Patuti from './components/Patuti';
-import RandomRoll from './components/RandomRoll';
-import StateManagement from './components/StateManagement';
+import ColorSequence from './components/Color Sequence/ColorSequence';
+import TicTacToe from './components/TicTacToe/TicTacToe';
+import Patuti from './components/Statemanagement/Patuti';
+import RandomRoll from './components/Random Rolle/RandomRoll';
+import StateManagement from './components/Statemanagement/StateManagement'
 import context from './components/context/context';
 import StateContext from './components/context/context';
+import RestExample from './components/Notes/RestExample';
 function App() {
   return (
     <div className="App">
@@ -13,8 +14,9 @@ function App() {
       {/* <TicTacToe></TicTacToe> */}
       {/* <Patuti/> */}
       {/* <RandomRoll/> */}
-      <StateContext><StateManagement/></StateContext>
+      {/* <StateContext><StateManagement/></StateContext> */}
       {/* </header> */}
+      <RestExample/>
     </div>
   );
 }
