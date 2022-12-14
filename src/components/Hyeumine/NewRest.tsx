@@ -151,18 +151,12 @@ const MyNotes = () => {
                 <div>
                     <Box sx={{
                         display: "flex",
-                        flexDirection: "column",
-                        gap: "2rem",
-                        height: "100vh",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        width: "100vw",
+                        gap: "20px",
                     }}>
                         <Box sx={{
                             display: 'flex',
                             flexDirection: 'column',
-                            width: '15vw',
-                            gap: '.7rem'
+                            gap: '20px'
                         }}>
                             <h1 style={{ color: '#1DA1F2' }}> Welcome {user.username}{"!"}</h1>
                             <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
@@ -173,23 +167,30 @@ const MyNotes = () => {
                                 </Button>
                             </div>
                             <div>
-                                <p className="mb-4">Reply</p>
-                                <TextField
-                                    label="Post ID"
-                                    value={replyPost.id}
-                                    type="number"
-                                    name="id"
-                                    onChange={replyHandler}
-                                />
-                                <TextField
-                                    label="Reply"
-                                    value={replyPost.reply}
-                                    name="reply"
-                                    onChange={replyHandler}
-                                />
-                                <Button onClick={reply} variant="contained">
-                                    Reply Post
-                                </Button>
+                                <Box sx={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    gap: "20px",
+                                    marginTop: "20px",
+                                }}>
+                                    <p className="mb-4">Reply</p>
+                                    <TextField
+                                        label="Post ID"
+                                        value={replyPost.id}
+                                        type="number"
+                                        name="id"
+                                        onChange={replyHandler}
+                                    />
+                                    <TextField
+                                        label="Reply"
+                                        value={replyPost.reply}
+                                        name="reply"
+                                        onChange={replyHandler}
+                                    />
+                                    <Button onClick={reply} variant="contained">
+                                        Reply Post
+                                    </Button>
+                                </Box>
                             </div>
                         </Box>
                     </Box>
