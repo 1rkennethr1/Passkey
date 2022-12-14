@@ -7,6 +7,8 @@ import StateManagement from './components/Statemanagement/StateManagement'
 import context from './components/context/context';
 import StateContext from './components/context/context';
 import RestExample from './components/Notes/RestExample';
+import NewRest from './components/Hyeumine/NewRest'
+import SignUp from './components/Hyeumine/SignUp';
 function App() {
   return (
     <div className="App">
@@ -16,7 +18,8 @@ function App() {
       {/* <RandomRoll/> */}
       {/* <StateContext><StateManagement/></StateContext> */}
       {/* </header> */}
-      <RestExample/>
+      <NewRest/>
+      {/* <SignUp/> */}
     </div>
   );
 }
