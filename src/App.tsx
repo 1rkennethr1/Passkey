@@ -8,7 +8,6 @@ import context from './components/context/context';
 import StateContext from './components/context/context';
 import RestExample from './components/Notes/RestExample';
 import NewRest from './components/Hyeumine/NewRest'
-import SignUp from './components/Hyeumine/SignUp';
 function App() {
   return (
     <div className="App">

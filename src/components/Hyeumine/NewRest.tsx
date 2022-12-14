@@ -2,7 +2,7 @@ import { Box, Button, Link, TextField } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const MyNotes = () => {
+const MoraTwitter = () => {
     const [user, setUser] = useState({
         username: "",
         password: "",
@@ -265,5 +265,5 @@ const MyNotes = () => {
     )
 };
 
-export default MyNotes;
+export default MoraTwitter;
 
