@@ -122,23 +122,23 @@ const MyNotes = () => {
                                 <h1 style={{ color: '#1DA1F2' }}>{isNotCreated ? "Create User" : "Please Login"}</h1>
                                 {isNotCreated ? (
                                     //REGISTER
-                                    <div>
+                                    <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
                                         <TextField id="username" label="Username" name="username" value={register.username} variant="filled" onChange={changeHandler} />
                                         <   TextField id="password" label="Password" name="password" variant="filled" type={"password"} value={register.password} onChange={changeHandler} />
                                     </div>
                                 ) : (
                                     //LOGIN
-                                    <div>
+                                    <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
                                         <TextField label="Username" name="username" value={user.username} onChange={changeHandler1} />
                                         <TextField label="Password" type={"password"} value={user.password} name="password" onChange={changeHandler1} />
                                     </div>
                                 )}
                                 {/* REGISTER / LOGIN BUTTON */}
-                                <Button variant="contained" onClick={isNotCreated ? createUser : login}>{isNotCreated ? "Create User" : "Login"}
+                                <br></br>
+                                <Button size ="large" variant="contained" onClick={isNotCreated ? createUser : login}>{isNotCreated ? "Create User" : "Login"}
                                 </Button>
-                                <br />
                                 <div>
-                                    <p onClick={() => setIsNotCreated(!isNotCreated)} style={{ color: "#2b6cb0", cursor: "pointer" }}>
+                                    <p onClick={() => setIsNotCreated(!isNotCreated)} style={{ color: "#2b6cb0", cursor: "pointer", fontSize: "14px"}}>
                                         {isNotCreated ? "Login" : "Sign-Up"}
                                     </p>
                                 </div>
@@ -148,7 +148,7 @@ const MyNotes = () => {
                 </div>
             )}
             {isLogin && loggedUser && (
-                <div>
+                <div style={{ display: "flex", gap: "20rem" }}>
                     <Box sx={{
                         display: "flex",
                         gap: "20px",
@@ -201,7 +201,7 @@ const MyNotes = () => {
                             borderRadius: "10px",
                             padding: "10px",
                         }}>
-                            <h1>All Posts</h1>
+                            <h1 style={{ color: '#1DA1F2' }}>All Posts</h1>
                             <Box sx={{
                                 display: "flex",
                                 flexDirection: "column",
@@ -219,17 +219,19 @@ const MyNotes = () => {
                                                 boxShadow: "2px 2px 6px #000000e",
                                             }}
                                         >
-                                            <p style={{ marginBottom: "4px", fontWeight: "600" }}>
-                                                {post.user}
+                                            <p style={{ marginBottom: "4px", fontWeight: "700" }}>
+                                                User: {post.user}
                                             </p>
 
                                             <p style={{ fontSize: "18px", lineHeight: "28px" }}>
-                                                {post.post}
+                                                Post ID: {post.id}
+                                                <br></br>
+                                                Post: "{post.post}"
                                             </p>
                                             {post.reply?.length > 0 && (
-                                                <h1 style={{ marginTop: "20px", marginBottom: "5px" }}>
+                                                <h4 style={{ marginTop: "20px", marginBottom: "5px" }}>
                                                     Replies:{" "}
-                                                </h1>
+                                                </h4>
                                             )}
                                             <div>
                                                 {post.reply?.map((e: any, i: number) => {
@@ -238,7 +240,7 @@ const MyNotes = () => {
                                                             key={i}
                                                             style={{
                                                                 marginBottom: "8px",
-                                                                fontSize: "14px",
+                                                                fontSize: "16px",
                                                                 lineHeight: "20px",
                                                             }}
                                                         >
