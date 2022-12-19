@@ -8,20 +8,20 @@ import context from './components/context/context';
 import StateContext from './components/context/context';
 import RestExample from './components/Notes/RestExample';
 import NewRest from './components/Hyeumine/NewRest'
-import SignUp from './components/Hyeumine/SignUp';
 import Bingo from './components/EBingo/Bingo';
 function App() {
   return (
     <div className="App">
-      {/* <header className="App-header"> */}
+      <header className="App-header">
       {/* <TicTacToe></TicTacToe> */}
       {/* <Patuti/> */}
       {/* <RandomRoll/> */}
       {/* <StateContext><StateManagement/></StateContext> */}
       {/* </header> */}
-      {/* <NewRest/> */}
-      <Bingo/>
-      {/* <SignUp/> */}
+      <NewRest/>
+      {/* <RestExample/> */}
+      <NewRest/>
+      </header>
     </div>
   );
 }

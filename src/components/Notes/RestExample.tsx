@@ -1,4 +1,5 @@
 import { Box, Button, Card, TextField } from "@mui/material";
+import { fontSize } from "@mui/system";
 import { useEffect, useState } from "react";
 import { useRest } from "./useREST"
 
@@ -6,14 +7,15 @@ const MyNotes = () => {
     const [newUser, newNote, sendRequest, data, loading, error, user] = useRest();
     const [hyuser, setUser] = useState<any>(
         // @ts-ignore
-        JSON.parse(localStorage.getItem("hyeumine-user")) || [] // kwaon ang naka set na user sa local storage para di na mo balik ug create para chuy ba lobton ka ron
+        JSON.parse(localStorage.getItem("hyeumine-user")) || [] 
     );
-    const [note, setNote] = useState<string>(""); // paras input nga note
-    const [mynotes, setMynotes] = useState<any[][]>([]); // ga set ug mynotes nga state para mugwapo ko
+    const [note, setNote] = useState<string>("");
+    const [mynotes, setMynotes] = useState<any[][]>([]); 
+
     useEffect(() => {
         sendRequest({
             method: "GET",
-            url: "http://hyeumine.com/mynotes.php?id=" + hyuser.id, //imong id,
+            url: "http://hyeumine.com/mynotes.php?id=" + hyuser.id, 
         });
         if (data) {
             setMynotes(data.notes);
@@ -21,7 +23,6 @@ const MyNotes = () => {
     }, [data]);
 
     if (!hyuser.id) {
-        // if walay user then create a new user amawa o
         return (
             <Box
                 sx={{
@@ -33,7 +34,12 @@ const MyNotes = () => {
                 }}
                 className="">
                 <Button
-                    variant="contained"
+                    variant="contained" size="large" sx={{
+                        width: "10  rem",
+                        height: "4rem",
+                        background: "#4d948b",
+                        fontSize: "20px"
+                    }}
                     onClick={() => {
                         newUser({
                             id: -1,
@@ -42,54 +48,67 @@ const MyNotes = () => {
                         });
                         setUser(user);
                     }}>
-                    Create A User
+                    Create A New User
                 </Button>
             </Box>
         );
-    } // pang usba ni diri mga yawa
+    } 
 
     return (
         <div className="">
             {hyuser.id && (
                 <div>
-                    <Box sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "2rem",
-                        height: "100vh",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        width: "100vw",
-                    }}
-                        className="">
+                    <div>
                         {hyuser && (
                             <div
-                                style={{ fontWeight: "bold", fontSize: "1.5rem" }}
+                                style={{ fontWeight: "bold", fontSize: "2rem", paddingTop: "10rem"}}
                                 className="">
                                 [{hyuser.id}] {hyuser.firstname} {hyuser.lastname}
                             </div>
                         )}
+                    </div>
+                    <div>
+                    <Box sx={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "1.5rem",
+                        height: "60vh",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        width: "100vw",
+                    }} className="">
+
                         <Box sx={{
                             display: "flex",
                             flexDirection: "column",
-                            gap: "10px",
+                            gap: "8px",
                             overflowY: data ? (data?.notes.length > 0 ? "scroll" : "") : "",
-                            height: "20rem",
+                            height: "25rem",
                         }}>
                             {data && mynotes.map((e) => {
-                                    return (
-                                        <Card sx={{ p: "2rem" }} className="">
-                                            {e[0]} {e[1]}
-                                        </Card>
-                                    );
-                                })}
+                                return (
+                                    <Card sx={{ 
+                                        p: ".5rem",
+                                        backgroundColor: "#4d948b"
+        
+                                    }}className="">
+                                        {e[0]} {e[1]}
+                                    </Card>
+                                );
+                            })}
                         </Box>
-                        <p>Create new note</p>
+                        <p>Create New Note</p>
                         <TextField
                             value={note}
                             onChange={(e) => setNote(e.target.value)}
-                            label="Note"
-                            variant="outlined"
+                            label = "Enter Note"
+                            variant = "outlined"
+                            multiline
+                            rows={7}
+                            color = "success"
+                            sx={{
+                                input: { color: 'white' },
+                            }}
                         />
                         <Button
                             onClick={() => {
@@ -102,14 +121,19 @@ const MyNotes = () => {
                                 );
                                 sendRequest({
                                     method: "GET",
-                                    url: "http://hyeumine.com/mynotes.php?id=" + hyuser.id, //imong id,
+                                    url: "http://hyeumine.com/mynotes.php?id=" + hyuser.id, 
                                 });
                                 setNote("");
                             }}
-                            variant="contained">
+                            variant="contained" size="large" sx={{
+                                width: "8rem",
+                                height: "3rem",
+                                background: "#4d948b"
+                            }}>
                             Submit
                         </Button>
                     </Box>
+                </div>
                 </div>
             )}
         </div>
