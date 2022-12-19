@@ -18,9 +18,10 @@ function App() {
       {/* <RandomRoll/> */}
       {/* <StateContext><StateManagement/></StateContext> */}
       {/* </header> */}
-      <NewRest/>
+      {/* <NewRest/> */}
+      <Bingo/>
       {/* <RestExample/> */}
-      <NewRest/>
+      {/* <NewRest/> */}
       </header>
     </div>
   );

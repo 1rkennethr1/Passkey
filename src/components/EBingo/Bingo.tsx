@@ -1,11 +1,11 @@
-import { Button, colors, TextField } from "@mui/material";
+import { Button,  TextField } from "@mui/material";
 import { Box } from "@mui/system";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useRest, { Card } from "./useRest";
 
 const Bingo = () => {
-	const [playerData, joinGame, checkWin, isChecked, error] = useRest();
-	const [gameId, setGameId] = useState<string>("");
+	const [playerData, joinGame, checkWin, isValid, error] = useRest();
+	const [bCode, setbCode] = useState<string>("");
 
 	function refreshPage() {
 		window.location.reload();
@@ -15,12 +15,12 @@ const Bingo = () => {
 			sx={{
 				display: "flex",
 				flexDirection: "column",
-				justifyContent: isChecked ? "center" : "start",
+				justifyContent: isValid ? "center" : "start",
 				alignItems: "center",
 				minHeight: "100vh",
 				gap: "1rem",
 			}}>
-			{!isChecked && playerData === undefined && (
+			{!isValid && playerData === undefined && (
 				<img
 					style={{
 						marginTop: "7rem"
@@ -29,7 +29,7 @@ const Bingo = () => {
 					src="https://www.pngmart.com/files/17/Bingo-Game-PNG-Photos.png"
 					alt="Bingo PNG" />
 			)}
-			{!isChecked && playerData === undefined && (
+			{!isValid && playerData === undefined && (
 				<div
 					style={{
 						display: "flex",
@@ -44,7 +44,7 @@ const Bingo = () => {
 					<form
 						onSubmit={(e) => {
 							e.preventDefault();
-							joinGame(gameId);
+							joinGame(bCode);
 						}}
 						style={{
 							display: "flex",
@@ -58,8 +58,8 @@ const Bingo = () => {
 							<p
 								style={{
 									position: "absolute",
-									left: "3rem",
-									top: "-2rem",
+									left: "20rem",
+									top: "-2.5rem",
 									color: "Red",
 									fontSize: ".8rem",
 								}}>
@@ -67,8 +67,8 @@ const Bingo = () => {
 							</p>
 						)}
 						<TextField
-							value={gameId}
-							onChange={(e) => setGameId(e.target.value)}
+							value={bCode}
+							onChange={(e) => setbCode(e.target.value)}
 							variant="outlined"
 							label="Bingo Game ID"
 							autoComplete="off"
@@ -84,16 +84,16 @@ const Bingo = () => {
 					</form>
 				</div>
 			)}
-			{isChecked && playerData && (
+			{isValid && playerData && (
 				<div
 					style={{
 						display: "flex",
 						justifyContent: "center",
 						flexDirection: "row",
-						gap: "3rem",
+						gap: "4rem",
 					}}>
 					<div style={{
-						marginTop: "2rem"
+						marginTop: "-1rem"
 					}}>
 						<div style={{
 							marginBottom: "1rem"
@@ -106,7 +106,7 @@ const Bingo = () => {
 							style={{
 								display: "flex",
 								flexDirection: "column",
-								padding: "2rem",
+								padding: "02rem",
 								border: "3px solid blue",
 								boxShadow: "4px 4px 5px #00000011",
 								borderRadius: "10px",
@@ -117,7 +117,7 @@ const Bingo = () => {
 							<p style={{ marginTop: "0rem", marginBottom: "1rem", fontWeight: "bold", fontSize: "2rem", color: "#B56727" }}>
 								Player Details
 							</p>
-							<p style={{ color: "#B56727" }}>Game Code: {gameId}</p>
+							<p style={{ color: "#B56727" }}>Game Code: {bCode}</p>
 							<p style={{ color: "#B56727" }}>Playcard Token: {playerData.playcard_token}</p>
 							<Button
 								onClick={() => {
@@ -125,7 +125,7 @@ const Bingo = () => {
 								}}
 								color="success" variant="outlined"
 								sx={{
-									fontSize: ".6rem",
+									fontSize: "1rem",
 									p: ".5rem",
 									mt: "2rem",
 								}}>

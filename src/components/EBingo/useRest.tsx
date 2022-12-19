@@ -20,7 +20,7 @@ const useRest = (): [
 	boolean
 ] => {
 	const [playerData, setPlayerData] = useState<PlayerData>();
-	const [isChecked, setChecked] = useState<boolean>(false);
+	const [isValid, setIsValid] = useState<boolean>(false);
 	const [error, setError] = useState<boolean>(false);
 
 	const joinGame = async (id: string) => {
@@ -32,7 +32,7 @@ const useRest = (): [
 			console.log(res);
 			if (res.data !== 0) {
 				setPlayerData(res.data);
-				setChecked(true);
+				setIsValid(true);
 			} else {
 				setError(true);
 			}
@@ -48,7 +48,7 @@ const useRest = (): [
 		});
 	};
 
-	return [playerData, joinGame, checkWin, isChecked, error];
+	return [playerData, joinGame, checkWin, isValid, error];
 };
 
 export default useRest;
